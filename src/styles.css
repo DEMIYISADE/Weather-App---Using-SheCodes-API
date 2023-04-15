@@ -1,111 +1,62 @@
 .border{
-border: 50px solid navy;
-padding: 50px;
-margin: 150px 150px;
-border-radius: 20px;
-background-color: #F6F8FC;
-/****max-width: 600px;****/
-/****margin: 20px auto;****/
+    color: navy;
+    margin: 150px 100px;
+    padding: 50px 50px;
+    border-style: solid;
+    border-radius: 20px;
+    border-width: 10px;
+    background-color: rgb(185, 243, 243);
 }
 
-.middle1{
-    position: absolute;
-    right: 300px;
-    top: 410px;
-    font-family: arial,sans-serif;
-    line-height: 16px;
-    font-size: 12px;
-    font-weight: bolder;
-    color: #70757a;
+li{
+    list-style-type: none;
 }
-.middle2 {
-    position: absolute;
-    right: 300px;
-    top: 430px;
-    font-family: arial,sans-serif;
-    font-size: 12px;
-    line-height: 16px;
-    color: #70757a;
-    font-weight: bolder;
+
+.detailsRight{
+    margin-right: -10px;
 }
-.col-3{
-    color: blue;
-    font-family:system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-    font-weight: bold;
-    margin: 10px auto;
-}
+
 .col-2{
-    font-weight:bold;
-    color: rgb(110, 109, 109);
-    font-size: large;
     text-align: center;
 }
-
-.insideCol2{
-    font-weight:bold;
-    color: #949697;
-    font-size: small;
+.top-country{
+    color: navy;
+    font-size: 20px;
+    font-weight: bold;
+    font-family: 'Lobster Two', cursive;
 }
 
-.search{
-    color: white;
-    background: #42A5F5;
-    padding: 10px auto;
+.second-Layer{
+    color: #202124;
+    font-size: 14px;
+    font-family: 'Fira Sans Condensed', sans-serif;
+    font-weight: bold;
+}
 
+.time{
+    color: #70757A;
+    font-style: arial, sans-serif;
+    font-weight: bold;
 }
-.current {
-    color: white;
-    background: #8EC351;
-    padding: 10px auto;
 
+.weekDay{
+    color: #202124;
+    font-style: arial, sans-serif;
+    font-weight: bold;
 }
-pr{
-    font-family: 'Franklin Gothic Medium','Arial Narrow',Arial,sans-serif;
-    font-size: small;
+
+img{
+    width: 65px;
 }
-.deg1{
+
+.temperatureNumber{
+    font-size: 38px;
+    color: #212529;
     font-family: Arial, Helvetica, sans-serif;
-    font-size: 45px;
-    line-height: 64px;
-    margin-left: -5px;
-}
+    height: 25px;
 
-.deg2{
-    font-family: arial,sans-serif;
-    font-size: 12px;
-    line-height: 16px;
-    position: relative;
-    top: -20px;
-    
-}
-
-.deg2 .active{
-    color: black;
-    cursor: default;
+}.degree{
     text-decoration: none;
-
-}
-
-.deg2 .active:hover{
-    text-decoration: none;
-}
-
-.concentration{
-    font-size: 16px;
-    font-stretch:normal;
-    color: #70757a;
-    text-transform: capitalize;
-}
-
-.imageChange{
-    position: relative;
-    top: -10px;
-}
-
-.link{
-    padding: 50px;
-    margin-bottom: 150px 150px;
-    position: absolute;
-    right: 750px;
-    top: 650px;
+    font-size: 15px;
+    vertical-align: +15px;
 }
