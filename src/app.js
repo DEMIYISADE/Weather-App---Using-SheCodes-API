@@ -27,7 +27,6 @@ function getCoords(event){
 }
 
 function showCoords(position){
-    console.log(position);
     let lon = position.coords.longitude;
     let lat = position.coords.latitude;
     let key ="e5t51009395b749oa22101e37e04fc92";
