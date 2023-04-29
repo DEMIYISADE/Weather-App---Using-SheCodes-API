@@ -1,6 +1,8 @@
 
 document.querySelector("#CurrentTime").innerHTML = "Wednesday, 04:04";
 
+//Central function for weather data update on html page
+
 function displayWeatherData(response){
     document.querySelector("#City").innerHTML = response.data.city;
     document.querySelector("#Country").innerHTML = response.data.country;
@@ -13,15 +15,7 @@ function displayWeatherData(response){
     //getCoords(response);
 }
 
-    function getCityData(event){
-        event.preventDefault();
-        let apiKey = "e5t51009395b749oa22101e37e04fc92";
-        let city = document.getElementById("citySearch").value;
-        document.getElementById("citySearch").value = "";
-        console.log(city);
-        let apiUrl = `https://api.shecodes.io/weather/v1/current?query=${city}&key=${apiKey}&units=metric`;
-        axios.get(apiUrl).then(displayWeatherData);
-    }
+ 
 // Getting current Location through button click
 
 let currentLocation = document.querySelector("#clocation");
@@ -41,6 +35,19 @@ function showCoords(position){
     axios.get(apiUrl1).then(displayWeatherData);
 }
 
+// Search for a city and display weather data through existing function
+
 let citySearch = document.querySelector("#citySubmit");
 citySearch.addEventListener("click", getCityData);
+
+
+
+function getCityData(event){
+    event.preventDefault();
+    let apiKey = "e5t51009395b749oa22101e37e04fc92";
+    let city = document.getElementById("citySearch").value;
+    document.getElementById("citySearch").value = "";
+    let apiUrl = `https://api.shecodes.io/weather/v1/current?query=${city}&key=${apiKey}&units=metric`;
+    axios.get(apiUrl).then(displayWeatherData);
+}
 
