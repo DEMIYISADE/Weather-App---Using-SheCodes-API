@@ -1,5 +1,25 @@
+let today = new Date();
+console.log(today);
+let day = today.getDay();
+console.log(day);
+let weekDays = ["Sun", "Mon", "Tues", "Wed", "Thurs", "Fri", "Sat"];
+let hour = today.getHours();
+let minute = today.getMinutes();
 
-document.querySelector("#CurrentTime").innerHTML = "Wednesday, 04:04";
+function minuteUpdate(){
+    if (minute <10){
+        minute = `0${minute}`;
+    }
+    else{
+        minute = minute;
+    }
+    return minute;
+}
+
+let fullDate = `${weekDays[day]} ${hour}:${minute}`
+console.log(fullDate);
+
+document.querySelector("#CurrentTime").innerHTML = fullDate;
 
 //Central function for weather data update on html page
 
@@ -49,4 +69,63 @@ function getCityData(event){
     let apiUrl = `https://api.shecodes.io/weather/v1/current?query=${city}&key=${apiKey}&units=metric`;
     axios.get(apiUrl).then(displayWeatherData);
 }
+
+
+
+
+
+
+
+/*function forcastSection (){
+
+    weekDays.forEach (function(weekDay) {
+        let forecastPart = `<div class="forecastBlock">
+    <div class="row">
+        <div class="col-2">
+            <div class="time"> 8:22 </div>
+            <div class="weekDay"> Mon </div>
+            <div class="forecastImage">
+                <img src="images/weather2.png" alt="forecast weather icon"/>
+            </div>
+            <div class="forecastTemperature">
+                <span class="maxTemp"> 18°</span>
+                <span class="minTemp"> |10°</span>
+            </div>
+        </div>
+    </div>
+    </div>`;
+        let displayForecast = document.querySelector("#forecastBlock").innerHTML;
+        displayForecast =  `<div class = "forecastBlock"> ${forecastPart} </div>`;
+        
+    });
+    return displayForecast;   
+
+};*/
+
+function showForeCast(){
+    let displayForecast = document.querySelector("#forecastBlock");
+    let initialdivFormat = `<div class="row">`;
+    weekDays.forEach(repeatDisplay);
+
+    function repeatDisplay(){
+            initialdivFormat = initialdivFormat + `<div class="col-2">
+                    <div class="time"> 8:22 </div>
+                    <div class="weekDay"> Mon </div>
+                    <div class="forecastImage">
+                        <img src="images/weather2.png" alt="forecast weather icon"/>
+                    </div>
+                    <div class="forecastTemperature">
+                        <span class="maxTemp"> 18°</span>
+                        <span class="minTemp"> |10°</span>
+                    </div>
+                </div>`;
+    }
+    initialdivFormat = initialdivFormat + `</div>`;
+    displayForecast.innerHTML = initialdivFormat;
+    console.log(initialdivFormat);
+}
+
+weekDays.forEach (showForeCast);
+
+
 
