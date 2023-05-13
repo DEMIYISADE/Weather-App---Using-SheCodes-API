@@ -27,9 +27,10 @@ function displayWeatherData(response){
     document.querySelector("#pressureValue").innerHTML = response.data.temperature.pressure;
     document.querySelector("#windValue").innerHTML = Math.round(response.data.wind.speed);
     document.querySelector("#TemperatureNumber").innerHTML = Math.round(response.data.temperature.current);
-    let temperature = response.data.temperature.current;
     document.querySelector("#weatherIcon").setAttribute ("src", response.data.condition.icon_url);
-    cConversion(temperature);
+    //let dTemperature = (Math.round(response.data.temperature.current));
+    //cConversion(dTemperature);
+    //fConversion(dTemperature);
     //getCoords(response);
 }
 
@@ -117,15 +118,25 @@ function foreCastedWeather(city){
 
 //showForeCast("Toronto");
 
-    let celsius = document.querySelector("#celsius");
+   /* let celsius = document.querySelector("#celsius");
     let farenheit = document.querySelector("#farenheit");
-    celsius.addEventListerner("click", fConversion);
+    celsius.addEventListener("click", fConversion);
     farenheit.addEventListener("click", cConversion);
 
-    function cConversion(event){
+    function cConversion(event, temp){
         event.preventDefault();
         let tConversion = document.querySelector("#TemperatureNumber");
-        tConversion.innerHTML = (Math.round((temperature * 9/5) + 32));
+        tConversion.innerHTML = (Math.round((temp* 9/5) + 32));
     }
+
+    function fConversion(event, temp){
+        event.preventDefault();
+        let sConversion = document.querySelector("#TemperatureNumber");
+        sConversion.innerHTML = temp;
+    }*/
+
+    //dTemperature = null;
+
+    
 
 
