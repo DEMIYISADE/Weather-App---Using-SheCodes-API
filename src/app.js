@@ -28,8 +28,10 @@ function displayWeatherData(response){
     document.querySelector("#windValue").innerHTML = Math.round(response.data.wind.speed);
     document.querySelector("#TemperatureNumber").innerHTML = Math.round(response.data.temperature.current);
     document.querySelector("#weatherIcon").setAttribute ("src", response.data.condition.icon_url);
-    //let dTemperature = (Math.round(response.data.temperature.current));
-    //cConversion(dTemperature);
+    let dTemperature = response.data.temperature.current;
+    console.log(dTemperature);
+    cClick(dTemperature);
+    fClick(dTemperature);
     //fConversion(dTemperature);
     //getCoords(response);
 }
@@ -74,20 +76,16 @@ function getCityData(event){
 
 
 function showForeCast(response){
-    //console.log(response);
-    let maxData = response.data.daily;
-    //console.log(maxData);     
+    let maxData = response.data.daily;   
     let displayForecast = document.querySelector("#forecastBlock");
     let initialdivFormat = `<div class="row">`;
     maxData.forEach(repeatDisplay);
 
     function repeatDisplay(response){
-        console.log(response);
         let days = ["Sun", "Mon", "Tues", "Wed", "Thurs", "Fri", "Sat"];
         let date = new Date((response.time)*1000);
         let day = date.getDay();
         let dayFormat = days[day];
-        //console.log(dayFormat);
         if (day > 0 && day < 7){
             initialdivFormat = initialdivFormat + `<div class="col-2">
                     <div class="weekDay"> ${dayFormat}  </div>
@@ -115,6 +113,35 @@ function foreCastedWeather(city){
     axios.get(apiUrl2).then(showForeCast);
 
 }
+
+function cClick(dTemperature){
+    let fLink = document.getElementById ("farenheit");
+    fLink.classList.add("active");
+    let cLink = document.getElementById ("celsius");
+    cLink.classList.remove("active");
+    let cValue = document.querySelector("#TemperatureNumber");
+    cValue.innerHTML = dTemperature;
+    console.log(dTemperature);
+}
+
+function fClick(dTemperature){
+    let cLink = document.getElementById ("celsius");
+    cLink.classList.add("active");
+    let fLink = document.getElementById ("farenheit");
+    fLink.classList.remove("active");
+    let fValue = document.querySelector("#TemperatureNumber");
+    fValue.innerHTML = Math.round((dTemperature * 9/5) + 32);
+}
+
+let celsiusConversion = document.querySelector("#farenheit");
+celsiusConversion.addEventListener("click", fClick);
+
+let farenheitConversion = document.querySelector("#celsius");
+farenheitConversion.addEventListener("click", cClick);
+
+
+dTemperature = null;
+foreCastedWeather("venice");
 
 //showForeCast("Toronto");
 
