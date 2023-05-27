@@ -26,12 +26,12 @@ function displayWeatherData(response){
     document.querySelector("#humidityValue").innerHTML = response.data.temperature.humidity;
     document.querySelector("#pressureValue").innerHTML = response.data.temperature.pressure;
     document.querySelector("#windValue").innerHTML = Math.round(response.data.wind.speed);
-    document.querySelector("#TemperatureNumber").innerHTML = Math.round(response.data.temperature.current);
-    document.querySelector("#weatherIcon").setAttribute ("src", response.data.condition.icon_url);
     let dTemperature = response.data.temperature.current;
-    console.log(dTemperature);
-    cClick(dTemperature);
-    fClick(dTemperature);
+    document.querySelector("#TemperatureNumber").innerHTML = Math.round(dTemperature);
+    document.querySelector("#weatherIcon").setAttribute ("src", response.data.condition.icon_url);
+    window.makGlobalTemperature = dTemperature;
+    //cClick(dTemperature);
+    //fClick(dTemperature);
     //fConversion(dTemperature);
     //getCoords(response);
 }
@@ -68,6 +68,13 @@ function getCityData(event){
     let city = document.getElementById("citySearch").value;
     foreCastedWeather(city);
     document.getElementById("citySearch").value = "";
+    let apiUrl = `https://api.shecodes.io/weather/v1/current?query=${city}&key=${apiKey}&units=metric`;
+    axios.get(apiUrl).then(displayWeatherData);
+}
+
+function getCityData2(city){
+    let apiKey = "e5t51009395b749oa22101e37e04fc92";
+    foreCastedWeather(city);
     let apiUrl = `https://api.shecodes.io/weather/v1/current?query=${city}&key=${apiKey}&units=metric`;
     axios.get(apiUrl).then(displayWeatherData);
 }
@@ -114,23 +121,25 @@ function foreCastedWeather(city){
 
 }
 
-function cClick(dTemperature){
+function cClick(event){
+    event.preventDefault();
     let fLink = document.getElementById ("farenheit");
     fLink.classList.add("active");
     let cLink = document.getElementById ("celsius");
     cLink.classList.remove("active");
     let cValue = document.querySelector("#TemperatureNumber");
-    cValue.innerHTML = dTemperature;
-    console.log(dTemperature);
+    cValue.innerHTML = Math.round(makGlobalTemperature);
+    console.log(makGlobalTemperature);
 }
 
-function fClick(dTemperature){
+function fClick(event){
+    event.preventDefault();
     let cLink = document.getElementById ("celsius");
     cLink.classList.add("active");
     let fLink = document.getElementById ("farenheit");
     fLink.classList.remove("active");
     let fValue = document.querySelector("#TemperatureNumber");
-    fValue.innerHTML = Math.round((dTemperature * 9/5) + 32);
+    fValue.innerHTML = Math.round((makGlobalTemperature * 9/5) + 32);
 }
 
 let celsiusConversion = document.querySelector("#farenheit");
@@ -140,8 +149,9 @@ let farenheitConversion = document.querySelector("#celsius");
 farenheitConversion.addEventListener("click", cClick);
 
 
-dTemperature = null;
+//dTemperature = 2;
 foreCastedWeather("venice");
+getCityData2("venice");
 
 //showForeCast("Toronto");
 
